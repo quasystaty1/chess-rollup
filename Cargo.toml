@@ -1,0 +1,33 @@
+[package]
+name = "chess"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+anyhow = { version = "1.0.0", optional = true }
+
+tracing = "0.1"
+serde = "1"
+serde_json = "1"
+sha2 = "0.10.8"
+tokio = { version = "1", features = ["full"] }
+color-eyre = "0.6"
+penumbra-ibc = { git = "https://github.com/penumbra-zone/penumbra.git", tag = "v0.80.7", default-features = false }
+astria-core = { git = "https://github.com/astriaorg/astria.git", package = "astria-core", features = [
+    "server",
+    "client",
+] }
+astria-eyre = { git = "https://github.com/astriaorg/astria.git", package = "astria-eyre", features = [
+    "anyhow",
+] }
+astria-sequencer-client = { git = "https://github.com/astriaorg/astria.git", package = "astria-sequencer-client", features = [
+    "http",
+] }
+bytes = "1.8.0"
+prost = "0.13.3"
+prost-types = "0.13.3"
+pbjson-types = { version = "0.7.0" }
+tower = "0.5.1"
+tower-http = { version = "0.4", features = ["cors"] }
+async-trait = "0.1.83"
+tonic = "0.10"
