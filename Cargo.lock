@@ -326,7 +326,7 @@ dependencies = [
  "hex",
  "ibc-types",
  "indexmap 2.6.0",
- "pbjson-types 0.6.0",
+ "pbjson-types",
  "penumbra-ibc",
  "penumbra-proto",
  "prost 0.12.6",
@@ -788,7 +788,7 @@ dependencies = [
  "async-trait",
  "bytes",
  "color-eyre",
- "pbjson-types 0.7.0",
+ "pbjson-types",
  "penumbra-ibc",
  "prost 0.13.3",
  "prost-types 0.13.3",
@@ -2532,16 +2532,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "pbjson"
-version = "0.7.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "c7e6349fa080353f4a597daffd05cb81572a9c031a6d4fff7e504947496fcc68"
-dependencies = [
- "base64 0.21.7",
- "serde",
-]
-
-[[package]]
 name = "pbjson-build"
 version = "0.6.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -2554,18 +2544,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "pbjson-build"
-version = "0.7.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "6eea3058763d6e656105d1403cb04e0a41b7bbac6362d413e7c33be0c32279c9"
-dependencies = [
- "heck 0.5.0",
- "itertools 0.13.0",
- "prost 0.13.3",
- "prost-types 0.13.3",
-]
-
-[[package]]
 name = "pbjson-types"
 version = "0.6.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -2573,25 +2551,10 @@ checksum = "18f596653ba4ac51bdecbb4ef6773bc7f56042dc13927910de1684ad3d32aa12"
 dependencies = [
  "bytes",
  "chrono",
- "pbjson 0.6.0",
- "pbjson-build 0.6.2",
+ "pbjson",
+ "pbjson-build",
  "prost 0.12.6",
- "prost-build 0.12.6",
- "serde",
-]
-
-[[package]]
-name = "pbjson-types"
-version = "0.7.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "e54e5e7bfb1652f95bc361d76f3c780d8e526b134b85417e774166ee941f0887"
-dependencies = [
- "bytes",
- "chrono",
- "pbjson 0.7.0",
- "pbjson-build 0.7.0",
- "prost 0.13.3",
- "prost-build 0.13.3",
+ "prost-build",
  "serde",
 ]
 
@@ -2657,7 +2620,7 @@ dependencies = [
  "ibig",
  "num-bigint",
  "once_cell",
- "pbjson-types 0.6.0",
+ "pbjson-types",
  "penumbra-num",
  "penumbra-proto",
  "poseidon377",
@@ -2689,7 +2652,7 @@ dependencies = [
  "metrics",
  "num-traits",
  "once_cell",
- "pbjson-types 0.6.0",
+ "pbjson-types",
  "penumbra-asset",
  "penumbra-num",
  "penumbra-proto",
@@ -2802,8 +2765,8 @@ dependencies = [
  "ibc-proto",
  "ibc-types",
  "ics23",
- "pbjson 0.6.0",
- "pbjson-types 0.6.0",
+ "pbjson",
+ "pbjson-types",
  "pin-project",
  "prost 0.12.6",
  "serde",
@@ -2834,7 +2797,7 @@ dependencies = [
  "im",
  "metrics",
  "once_cell",
- "pbjson-types 0.6.0",
+ "pbjson-types",
  "penumbra-keys",
  "penumbra-proto",
  "penumbra-tct",
@@ -3106,27 +3069,6 @@ dependencies = [
  "prettyplease",
  "prost 0.12.6",
  "prost-types 0.12.6",
- "regex",
- "syn 2.0.87",
- "tempfile",
-]
-
-[[package]]
-name = "prost-build"
-version = "0.13.3"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "0c1318b19085f08681016926435853bbf7858f9c082d0999b80550ff5d9abe15"
-dependencies = [
- "bytes",
- "heck 0.5.0",
- "itertools 0.13.0",
- "log",
- "multimap",
- "once_cell",
- "petgraph",
- "prettyplease",
- "prost 0.13.3",
- "prost-types 0.13.3",
  "regex",
  "syn 2.0.87",
  "tempfile",
