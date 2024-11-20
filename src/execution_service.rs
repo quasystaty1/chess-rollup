@@ -1,3 +1,4 @@
+use crate::game;
 use crate::rollup_app::AppState;
 use astria_core::execution::v1::Block;
 use astria_core::generated::execution::v1 as execution;
@@ -6,12 +7,14 @@ use astria_core::generated::sequencerblock::v1::rollup_data::Value::{Deposit, Se
 use astria_core::primitive::v1::RollupId;
 use astria_core::Protobuf;
 use bytes::Bytes;
+use chess::GameResult;
 use std::sync::Arc;
 use tokio::sync::RwLock;
 use tonic::{Request, Response, Status};
 
 pub(crate) struct RollupExecutionService {
     pub app: Arc<RwLock<AppState>>,
+    pub game_manager: Arc<RwLock<game::GameManager>>,
 }
 
 #[async_trait::async_trait]
@@ -95,13 +98,11 @@ impl ExecutionService for RollupExecutionService {
             };
         }
         let mut state = self.app.write().await;
+        let mut game_manager = self.game_manager.write().await;
+        let hash =
+            game_manager.process_transactions(&transactions, request.prev_block_hash.clone());
         let soft_height = state.soft_height;
-        let block = state.new_block(
-            request.prev_block_hash,
-            soft_height + 1,
-            transactions,
-            timestamp,
-        );
+        let block = state.new_block(request.prev_block_hash, hash, soft_height + 1, timestamp);
         Ok(Response::new(block))
     }
 
@@ -155,6 +156,9 @@ impl ExecutionService for RollupExecutionService {
             base_celestia_height: commitment_state_request.base_celestia_height,
         };
 
+        let games = self.game_manager.read().await;
+        let game_state = games.game_status(0);
+        println!("game 0 state: {:?}", game_state);
         Ok(Response::new(new_commitment_state))
     }
 }

@@ -79,13 +79,13 @@ impl AppState {
     pub fn new_block(
         &mut self,
         parent_hash: Bytes,
+        new_hash: Bytes,
         height: u32,
-        tx_to_process: Vec<Bytes>,
         timestamp: pbjson_types::Timestamp,
     ) -> astria_core::generated::execution::v1::Block {
         let block = astria_core::generated::execution::v1::Block {
             number: height,
-            hash: parent_hash.clone(),
+            hash: new_hash,
             parent_block_hash: parent_hash,
             timestamp: Some(timestamp),
         };

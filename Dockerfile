@@ -18,7 +18,7 @@ RUN cargo build --release
 FROM debian:bookworm-slim
 
 # Copy the compiled binary from the builder stage
-COPY --from=builder /app/target/release/chess /usr/local/bin/chess
+COPY --from=builder /app/target/release/chess-rollup /usr/local/bin/chess
 
 # Expose the gRPC port
 EXPOSE 50051

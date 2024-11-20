@@ -1,5 +1,6 @@
 use std::path::PathBuf;
 
+use config::ConfigError;
 use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Deserialize, Serialize, Default)]
@@ -14,4 +15,23 @@ pub struct Config {
     pub force_stdout: bool,
     /// Writes a human readable format to stdout instead of JSON formatted OTEL trace data.
     pub pretty_print: bool,
+    /// The address of the Composer service.
+    pub composer_addr: String,
+}
+
+impl Config {
+    /// Load configuration from environment variables and `.env` file.
+    pub fn from_env() -> Result<Self, ConfigError> {
+        // Load environment variables from `.env`
+        dotenv::dotenv().ok();
+
+        // Initialize the config loader
+        let mut settings = config::Config::builder();
+
+        // Merge environment variables into the configuration
+        settings = settings.add_source(config::Environment::default());
+
+        // Build the configuration and deserialize into the `Config` struct
+        settings.build()?.try_deserialize::<Self>()
+    }
 }
